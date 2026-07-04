@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Mehak Garg's AI-first portfolio featuring backend engineering, machine learning projects, research, and recruiter-ready insights."
+    />
+    <title>Mehak Garg | AI Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="intro-overlay" id="intro-overlay">
+      <div class="intro-card">
+        <p class="eyebrow">Welcome</p>
+        <h1>Mehak Garg</h1>
+        <p>Building intelligent systems with backend depth and AI-driven thinking.</p>
+      </div>
+    </div>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#home">Mehak<span>Garg</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="site-nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#ai-suite">AI Suite</a>
+        <a href="#recruiter">Recruiter Mode</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a class="button ghost desktop-cta" href="#contact">Let’s connect</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero section">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Python Backend · AI/ML Systems · Research</div>
+          <h1>AI-powered portfolio for a builder at the edge of software and intelligence.</h1>
+          <p class="hero-intro">
+            I’m Mehak Garg, a Computer Science professional who blends backend engineering, machine learning,
+            and research to create systems that are practical, scalable, and future-ready.
+          </p>
+          <div class="hero-highlight reveal">
+            <span>Recruiter-ready</span>
+            <strong>Ask my AI about skills, projects, and fit for your next role.</strong>
+          </div>
+          <div class="hero-actions">
+            <a class="button primary" href="#ai-suite">Ask my AI</a>
+            <a class="button secondary" href="#projects">Explore projects</a>
+            <a class="button secondary" href="Mehak_Garg_Resume.pdf" download>Download Resume</a>
+          </div>
+          <div class="metrics">
+            <div>
+              <strong>2+</strong>
+              <span>ML-driven projects</span>
+            </div>
+            <div>
+              <strong>2</strong>
+              <span>Research publications</span>
+            </div>
+            <div>
+              <strong>1+</strong>
+              <span>Industry internships</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="card-header">
+            <div>
+              <p class="card-label">AI Portfolio Assistant</p>
+              <h2>Ask me anything</h2>
+            </div>
+            <span class="status-pill">Live</span>
+          </div>
+          <div class="chat-window" id="chat-window"></div>
+          <div class="prompt-row">
+            <button class="prompt-chip" data-prompt="Why should I hire Mehak?">Why hire Mehak?</button>
+            <button class="prompt-chip" data-prompt="Tell me about her research.">Research</button>
+            <button class="prompt-chip" data-prompt="Show her projects.">Projects</button>
+            <button class="prompt-chip" data-prompt="What skills does she have?">Skills</button>
+          </div>
+          <form class="chat-form" id="chat-form">
+            <input id="chat-input" type="text" placeholder="Try: Explain her thesis or show sleep AI project" />
+            <button type="submit">Send</button>
+          </form>
+          <button class="voice-btn" id="voice-btn" type="button">🎤 Voice assist</button>
+        </div>
+      </section>
+
+      <section id="about" class="section about-grid reveal">
+        <div>
+          <div class="eyebrow">About me</div>
+          <h2>Building intelligent systems with a strong software engineering backbone.</h2>
+          <p>
+            I completed my M.Tech in Computer Science and am currently working as a Software Developer Intern,
+            developing Python backend services, REST APIs, and AI-powered features for production systems.
+            My work combines strong fundamentals in data structures, system design, and machine learning with
+            a focus on practical delivery and long-term scalability.
+          </p>
+        </div>
+        <div class="about-points">
+          <div>
+            <h3>Backend engineering</h3>
+            <p>I build reliable APIs, data pipelines, and modular services that make software systems usable and maintainable.</p>
+          </div>
+          <div>
+            <h3>AI/ML applications</h3>
+            <p>I design recommendation systems and classification-based ML solutions with a strong emphasis on real-world impact.</p>
+          </div>
+          <div>
+            <h3>Research mindset</h3>
+            <p>My projects and publications reflect a consistent focus on turning innovation into applied technology.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Skills</div>
+          <h2>Technical strengths and AI-tool exposure</h2>
+        </div>
+        <div class="skill-grid">
+          <article class="card">
+            <h3>Backend & Software</h3>
+            <p>Python, SQL, REST APIs, MySQL, Git, Jira, Bitbucket, system design, OOP, and debugging.</p>
+          </article>
+          <article class="card">
+            <h3>AI/ML & Data</h3>
+            <p>Feature engineering, data preprocessing, scikit-learn, TensorFlow, recommendation systems, classification workflows, and LLM-based application development.</p>
+          </article>
+          <article class="card">
+            <h3>AI tools & Productivity</h3>
+            <p>Exposure to ChatGPT, Claude, Gemini, and other AI assistants for coding support, research, brainstorming, and workflow acceleration, along with LLM-based workflows.</p>
+          </article>
+        </div>
+        <div class="skills-list">
+          <span>Python</span>
+          <span>SQL</span>
+          <span>REST APIs</span>
+          <span>MySQL</span>
+          <span>Git</span>
+          <span>Jira</span>
+          <span>Bitbucket</span>
+          <span>Jupyter</span>
+          <span>Google Colab</span>
+          <span>Linux</span>
+          <span>CI/CD</span>
+          <span>Scikit-learn</span>
+          <span>TensorFlow</span>
+          <span>LLMs</span>
+          <span>ChatGPT</span>
+          <span>Claude</span>
+          <span>Gemini</span>
+        </div>
+      </section>
+
+      <section id="ai-suite" class="section reveal">
+        <div class="section-heading">
+          <div class="eyebrow">AI suite</div>
+          <h2>Interactive experiences that make the portfolio memorable</h2>
+        </div>
+        <div class="skill-grid">
+          <article class="card">
+            <h3>Ask my AI</h3>
+            <p>Visitors can ask questions about research, experience, skills, and projects as if they were speaking to a personal AI guide.</p>
+          </article>
+          <article class="card">
+            <h3>Project explainer</h3>
+            <p>Each project can be explained in simple, technical, or deep-dive modes so recruiters and visitors can explore at their own pace.</p>
+          </article>
+          <article class="card">
+            <h3>Recruiter mode</h3>
+            <p>Paste a job description and get a quick match report with strengths, gaps, and fit insights.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Selected work</div>
+          <h2>Projects with built-in AI explanations</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Solitude Selections</h3>
+            <p>An AI-powered recommendation platform that personalizes recommendations using data preprocessing, feature engineering, and modular machine learning pipelines.</p>
+            <span>Python · Pandas · NumPy · Scikit-learn · Recommendation Systems</span>
+            <div class="project-actions">
+              <button class="project-action" data-project="solitude" data-mode="simple">Explain in 30s</button>
+              <button class="project-action" data-project="solitude" data-mode="technical">Technical depth</button>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3>Sleep Pattern Analysis</h3>
+            <p>A healthcare-focused ML system that analyzes sleep patterns and provides lifestyle recommendations through classification and predictive analytics.</p>
+            <span>Python · ML Classification · Feature Engineering · Vercel · Neon</span>
+            <div class="project-actions">
+              <button class="project-action" data-project="sleep" data-mode="simple">Explain in 30s</button>
+              <button class="project-action" data-project="sleep" data-mode="technical">Technical depth</button>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3>Backend & Data Pipelines</h3>
+            <p>Built production-oriented Python services, optimized SQL workflows, and reliable data processing pipelines during internships.</p>
+            <span>REST APIs · SQL · Optimization · Reliability · Agile</span>
+            <div class="project-actions">
+              <button class="project-action" data-project="backend" data-mode="simple">Explain in 30s</button>
+              <button class="project-action" data-project="backend" data-mode="technical">Technical depth</button>
+            </div>
+          </article>
+        </div>
+        <div class="explainer-panel" id="explainer-panel">
+          <h3>Project explainer</h3>
+          <p id="explainer-output">Select a project button to see a concise AI-style explanation.</p>
+        </div>
+      </section>
+
+      <section id="recruiter" class="section reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Recruiter mode</div>
+          <h2>Paste a job description and discover your fit instantly</h2>
+        </div>
+        <div class="recruiter-card">
+          <div>
+            <label for="job-description">Job description</label>
+            <textarea id="job-description" placeholder="Paste a role like Python Backend Engineer, ML Engineer, or AI Intern..."></textarea>
+            <button class="button primary" id="analyze-btn" type="button">Analyze fit</button>
+          </div>
+          <div class="analysis-result" id="analysis-result">
+            <h3>Recruiter insight</h3>
+            <p>Upload or paste a role description to see a match score, strengths, and skills to improve.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Testimonials</div>
+          <h2>What people notice about my approach</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Problem-focused builder</h3>
+            <p>“Mehak brings a clear engineering mindset and a practical grasp of AI applications that make ideas actionable.”</p>
+          </article>
+          <article class="project-card">
+            <h3>Research + execution</h3>
+            <p>“She balances thoughtful research with strong implementation skills, which makes her work both insightful and usable.”</p>
+          </article>
+          <article class="project-card">
+            <h3>Reliable collaborator</h3>
+            <p>“Her communication and backend awareness stand out in team settings where clarity and delivery matter.”</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="education" class="section reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Education & publications</div>
+          <h2>Learning, building, and sharing knowledge</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Education</h3>
+            <p>M.Tech in Computer Science & Engineering, J.C. Bose University of Science & Technology, CGPA 8.64.</p>
+            <p>B.Tech in Computer Science & Engineering, Manav Rachna International Institute of Research and Studies, CGPA 8.08.</p>
+          </article>
+          <article class="project-card">
+            <h3>Publications</h3>
+            <p>Published in CRC Press on “Solitude Assistance: An AI Powered Recommendation Platform.”</p>
+            <p>Also contributed to a review paper on cybersecurity in online banking for IEEE.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="cta-card">
+          <div>
+            <div class="eyebrow">Ready to collaborate?</div>
+            <h2>Let’s build something meaningful together.</h2>
+          </div>
+          <div>
+            <a class="button primary" href="mailto:rkgarg25@gmail.com">Email me</a>
+            <a class="button secondary" href="https://github.com/Mehak692002" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <p>© <span id="year"></span> Mehak Garg. Built for thoughtful technology.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
