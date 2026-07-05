@@ -13,6 +13,13 @@ const menuToggle = document.getElementById("menu-toggle");
 const siteNav = document.getElementById("site-nav");
 const themeToggle = document.getElementById("theme-toggle");
 
+const backendBaseUrl = (window.__PORTFOLIO_BACKEND_URL__ || "").trim() || (
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:8001"
+    : "https://your-backend-url.onrender.com"
+);
+const chatEndpoint = `${backendBaseUrl.replace(/\/$/, "")}/api/chat`;
+
 if (year) {
   year.textContent = new Date().getFullYear();
 }
@@ -66,7 +73,7 @@ async function getResponse(input) {
   }
 
   try {
-    const response = await fetch("http://127.0.0.1:8001/api/chat", {
+    const response = await fetch(chatEndpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message })
