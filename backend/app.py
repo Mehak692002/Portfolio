@@ -49,8 +49,8 @@ error-handling, and documented workflows.
 
 Projects: Sleep Pattern Analysis & Lifestyle Recommendation System (Python, Pandas, NumPy, Scikit-learn,
 TensorFlow/Keras, deployed via Vercel, Neon, and Render) and Solitude Selections, an AI-powered recommendation
-platform with modular, object-oriented Python pipelines, published as a research contribution in CRC Press,
-Taylor & Francis Group, 2025.
+platform with modular, object-oriented Python pipelines, 
+Project Link : https://sleep-recommendation-system.vercel.app/
 
 Technical skills: Python, SQL, C/C++ basics, microservices, REST APIs, OOP, data structures & algorithms,
 threading, MediaPipe, ONNX, spoof detection, scikit-learn, TensorFlow/Keras, feature engineering, NATS, NATS

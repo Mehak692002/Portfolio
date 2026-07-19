@@ -353,7 +353,9 @@ const projectExplainerCopy = {
   },
   sleep: {
     simple: "Sleep Pattern Analysis is an AI-powered recommendation platform that personalizes content using machine learning and thoughtful data preprocessing.",
-    technical: "This project applies supervised learning to a structured health dataset with preprocessing, feature engineering, and performance evaluation to uncover patterns in sleep behavior, deployed via Vercel, Neon, and Render."
+    technical: "This project applies supervised learning to a structured health dataset with preprocessing, feature engineering, and performance evaluation to uncover patterns in sleep behavior, deployed via Vercel, Neon, and Render.",
+    Project_Link : "https://sleep-recommendation-system.vercel.app/"
+
   },
   solitude: {
     simple: "Solitude Selections is an AI-powered recommendation platform that personalizes recommendations using data preprocessing, feature engineering, and modular machine learning pipelines.",
