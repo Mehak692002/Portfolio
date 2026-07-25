@@ -12,18 +12,15 @@ const analysisResult = document.getElementById("analysis-result");
 const menuToggle = document.getElementById("menu-toggle");
 const siteNav = document.getElementById("site-nav");
 const themeToggle = document.getElementById("theme-toggle");
-
 const backendBaseUrl = (window.__PORTFOLIO_BACKEND_URL__ || "").trim() || (
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8001"
     : "https://your-backend-url.onrender.com"
 );
 const chatEndpoint = `${backendBaseUrl.replace(/\/$/, "")}/api/chat`;
-
 if (year) {
   year.textContent = new Date().getFullYear();
 }
-
 /* ---------------------------------------------------------------------
  * Conversation state
  * -------------------------------------------------------------------*/
@@ -34,7 +31,6 @@ let conversationHistory = [];
 // Last topic discussed, used so "tell me more" / "go deeper" style
 // follow-ups can expand on what was just said instead of resetting.
 let lastTopic = null;
-
 /* ---------------------------------------------------------------------
  * Knowledge base: topics, keyword triggers, varied phrasings, and the
  * follow-up suggestions to surface after each topic.
@@ -52,7 +48,7 @@ const topics = {
   hire: {
     keywords: ["hire", "why should", "why hire", "strong fit", "good candidate", "worth hiring"],
     replies: [
-      "You should hire Mehak because she pairs production backend engineering with real computer-vision and event-driven systems experience — she's currently shipping FRS and messaging components, not just studying them.",
+      "You should hire Mehak because she pairs production backend engineering with real computer-vision and event-driven systems experience — she's currently shipping CVVRS and messaging components, not just studying them.",
       "Strong reasons to hire her: hands-on Python microservice work on a live Face Recognition System, a reusable NATS JetStream messaging library she built from scratch, and a research background that shows she can go deep when needed."
     ],
     detail: "She's also comfortable owning ambiguity — she introduced her own quality-tracking sheets at Veya Technologies rather than waiting to be asked.",
@@ -61,19 +57,19 @@ const topics = {
   experience: {
     keywords: ["experience", "intern", "internship", "veya", "mcdermott", "work history", "job"],
     replies: [
-      "She's currently a Software Developer Intern at Veya Technologies (Jan 2026–present), building a Python-based Face Recognition System and motion-detection pipeline with MediaPipe and ONNX, plus a reusable NATS JetStream messaging library.",
-      "Her experience spans two internships: Veya Technologies, where she works on computer-vision microservices and messaging infrastructure, and McDermott, where she built Python data-processing pipelines and optimized SQL queries."
+      "She's currently a Software Developer Intern at Veya Technologies (Jan 2026–present), building CVVRS — a Python-based Face Recognition System and motion-detection pipeline with MediaPipe and ONNX — plus a reusable NATS JetStream messaging library.",
+      "Her experience spans two internships: Veya Technologies, where she works on the CVVRS computer-vision system and messaging infrastructure, and McDermott, where she built Python data-processing pipelines and optimized SQL queries."
     ],
-    detail: "At Veya she also automated Jira-based engineering reporting with Python and Jenkins, adding Defect Quality, Scrum Quality, Review Activity, and Sprint Activity tracking that didn't exist before.",
-    suggestions: ["Tell me about the FRS project", "What's the NATS messaging library?", "What did she do at McDermott?"]
+    detail: "At Veya she also built the JIRA_REPORTS Framework, automating Jira-based engineering reporting with Python and Jenkins, and adding Defect Quality, Scrum Quality, Review Activity, and Sprint Activity tracking that didn't exist before.",
+    suggestions: ["Tell me about CVVRS", "What's the NATS messaging library?", "What did she do at McDermott?"]
   },
   frs: {
-    keywords: ["frs", "face recognition", "spoof", "motion detection", "computer vision", "mediapipe", "onnx"],
+    keywords: ["frs", "cvvrs", "face recognition", "spoof", "motion detection", "computer vision", "mediapipe", "onnx"],
     replies: [
-      "She's building components of a Python-based Face Recognition System (FRS) using MediaPipe and ONNX — covering face processing and spoof-detection — alongside a separate motion-detection pipeline.",
-      "The FRS work involves real-time computer-vision processing: face detection and spoof-detection with MediaPipe and ONNX, with threading and concurrent-processing techniques applied to keep the pipeline efficient."
+      "CVVRS (Computer Vision Video Recognition System) is her project covering a Python-based Face Recognition System built with MediaPipe and ONNX — face processing and spoof-detection — alongside a separate motion-detection pipeline.",
+      "The CVVRS work involves real-time computer-vision processing: face detection and spoof-detection with MediaPipe and ONNX, with threading and concurrent-processing techniques applied to keep the pipeline efficient."
     ],
-    detail: "Technically, this means balancing model inference latency against throughput — she applies threading and concurrent-processing patterns so the vision pipeline doesn't block on a single frame.",
+    detail: "Technically, this means balancing model inference latency against throughput — she applies threading and concurrent-processing patterns so the CVVRS vision pipeline doesn't block on a single frame.",
     suggestions: ["What's the NATS messaging library?", "What ML tools does she use?", "Show me her other projects"]
   },
   nats: {
@@ -83,15 +79,15 @@ const topics = {
       "Her messaging work is event-driven end to end: NATS JetStream streams and consumers, explicit acknowledgements, and retry handling so downstream services stay resilient when something fails."
     ],
     detail: "It's built to be reused across services, so other teams don't have to re-implement pub/sub plumbing — just import the library and wire up their handlers.",
-    suggestions: ["Tell me about the FRS project", "What backend tools does she use?", "Why should I hire her?"]
+    suggestions: ["Tell me about CVVRS", "What backend tools does she use?", "Why should I hire her?"]
   },
   jira: {
-    keywords: ["jira automation", "jenkins", "reporting", "sprint activity", "scrum quality", "defect quality", "review activity"],
+    keywords: ["jira automation", "jira_reports", "jira reports", "jenkins", "reporting", "sprint activity", "scrum quality", "defect quality", "review activity"],
     replies: [
-      "She automated Jira-based engineering report generation using Python APIs and Jenkins, giving the team visibility into delivery and defect quality that they didn't have before.",
+      "JIRA_REPORTS Framework is her project that automates Jira-based engineering report generation using Python APIs and Jenkins, giving the team visibility into delivery and defect quality that they didn't have before.",
       "This project introduced structured Defect Quality and Scrum Quality tracking sheets, plus Review Activity and Sprint Activity tracking, all generated automatically via Python and Jenkins."
     ],
-    detail: "It's a good example of her taking initiative — the tracking structure wasn't handed to her; she designed it based on what the engineering team actually needed to see.",
+    detail: "It's a good example of her taking initiative — the tracking structure wasn't handed to her; she designed it based on what the engineering team actually needed to see. The code is open source: github.com/Mehak692002/jira_reports.",
     suggestions: ["What's the NATS messaging library?", "Tell me about her internships", "What are her core skills?"]
   },
   sleep: {
@@ -118,8 +114,8 @@ const topics = {
       "Her core stack is Python, SQL, and C/C++ basics, with REST APIs, microservices, and OOP for backend work; MediaPipe, ONNX, scikit-learn, and TensorFlow/Keras for AI and computer vision; and NATS/NATS JetStream for event-driven messaging.",
       "Day to day she works across Python, MySQL/PostgreSQL, Git, Bitbucket, Jira, and Jenkins, plus Docker, Linux, and Agile/Scrum practices — with computer vision and messaging systems as her current specialization."
     ],
-    detail: "She's also comfortable with data structures & algorithms and threading/concurrency, which shows up directly in how she's built the FRS and motion-detection pipelines.",
-    suggestions: ["Tell me about the FRS project", "What's the NATS messaging library?", "Any research publications?"]
+    detail: "She's also comfortable with data structures & algorithms and threading/concurrency, which shows up directly in how she's built the CVVRS face-recognition and motion-detection pipelines.",
+    suggestions: ["Tell me about CVVRS", "What's the NATS messaging library?", "Any research publications?"]
   },
   research: {
     keywords: ["research", "publication", "paper", "ieee", "thesis", "sasa"],
@@ -149,13 +145,10 @@ const topics = {
     suggestions: ["Why should I hire her?", "What's she working on right now?", "Show me her projects"]
   }
 };
-
 const followUpKeywords = ["more", "go deeper", "explain further", "tell me more", "details", "elaborate", "expand"];
-
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
-
 function scoreTopics(message) {
   const lower = message.toLowerCase();
   const scores = [];
@@ -173,18 +166,15 @@ function scoreTopics(message) {
   scores.sort((a, b) => b.score - a.score);
   return scores;
 }
-
 function isFollowUp(message) {
   const lower = message.toLowerCase();
   return followUpKeywords.some((keyword) => lower.includes(keyword));
 }
-
 function fallbackAnswer(message) {
   const lower = message.trim().toLowerCase();
   if (!lower) {
     return { reply: "Ask me about Mehak's experience, projects, skills, or research — whatever's most useful to you.", suggestions: ["Why hire Mehak?", "Tell me about her experience", "What are her core skills?"] };
   }
-
   if (isFollowUp(message) && lastTopic && topics[lastTopic]) {
     const topic = topics[lastTopic];
     return {
@@ -192,7 +182,6 @@ function fallbackAnswer(message) {
       suggestions: topic.suggestions
     };
   }
-
   const ranked = scoreTopics(message);
   if (ranked.length > 0) {
     const key = ranked[0].key;
@@ -200,14 +189,12 @@ function fallbackAnswer(message) {
     const topic = topics[key];
     return { reply: pickRandom(topic.replies), suggestions: topic.suggestions };
   }
-
   lastTopic = null;
   return {
     reply: "I don't have a specific answer for that yet, but I can tell you about Mehak's experience at Veya Technologies and McDermott, her computer-vision and messaging projects, her skills, or her research — what sounds useful?",
     suggestions: ["Tell me about her experience", "Show me her projects", "What are her core skills?"]
   };
 }
-
 function addBubble(text, sender = "bot") {
   if (!chatWindow) {
     return null;
@@ -219,7 +206,6 @@ function addBubble(text, sender = "bot") {
   chatWindow.scrollTop = chatWindow.scrollHeight;
   return bubble;
 }
-
 function addTypingBubble() {
   if (!chatWindow) {
     return null;
@@ -231,7 +217,6 @@ function addTypingBubble() {
   chatWindow.scrollTop = chatWindow.scrollHeight;
   return bubble;
 }
-
 function renderSuggestions(suggestions) {
   const existing = document.getElementById("dynamic-suggestions");
   if (existing) {
@@ -258,13 +243,11 @@ function renderSuggestions(suggestions) {
   });
   chatWindow.parentElement.insertBefore(row, chatWindow.nextSibling);
 }
-
 async function getResponse(message) {
   const trimmed = message.trim();
   if (!trimmed) {
     return { reply: "Please ask about my research, projects, skills, or experience.", suggestions: [] };
   }
-
   try {
     const response = await fetch(chatEndpoint, {
       method: "POST",
@@ -283,11 +266,9 @@ async function getResponse(message) {
     return fallbackAnswer(trimmed);
   }
 }
-
 function initializeChat() {
   addBubble("Welcome! I'm Mehak's AI portfolio guide. Ask me about her experience, projects, skills, or why she'd be a strong hire — and I'll remember what we've talked about as we go.");
 }
-
 if (chatForm) {
   chatForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -305,20 +286,17 @@ if (chatForm) {
     if (staticPromptRow) {
       staticPromptRow.style.display = "none";
     }
-
     const typingBubble = addTypingBubble();
     const typingDelay = 450 + Math.random() * 500;
     const [result] = await Promise.all([
       getResponse(value),
       new Promise((resolve) => setTimeout(resolve, typingDelay))
     ]);
-
     if (typingBubble) {
       typingBubble.remove();
     }
     addBubble(result.reply);
     renderSuggestions(result.suggestions);
-
     conversationHistory.push({ role: "user", content: value });
     conversationHistory.push({ role: "assistant", content: result.reply });
     if (conversationHistory.length > 12) {
@@ -326,7 +304,6 @@ if (chatForm) {
     }
   });
 }
-
 promptChips.forEach((chip) => {
   chip.addEventListener("click", () => {
     if (chatInput) {
@@ -337,32 +314,30 @@ promptChips.forEach((chip) => {
     }
   });
 });
-
 const projectExplainerCopy = {
   frs: {
-    simple: "The FRS project is a Python computer-vision microservice that recognizes faces and checks they're real (not a photo or video) using MediaPipe and ONNX.",
-    technical: "Built as Python microservice components for a Face Recognition System, this project uses MediaPipe and ONNX for face processing and spoof-detection, with threading and concurrent-processing patterns applied so inference doesn't bottleneck the pipeline. A related motion-detection pipeline shares the same computer-vision foundation."
+    simple: "CVVRS (Computer Vision Video Recognition System) is a Python computer-vision microservice that recognizes faces and checks they're real (not a photo or video) using MediaPipe and ONNX.",
+    technical: "Built as Python microservice components for CVVRS — a Face Recognition System — this project uses MediaPipe and ONNX for face processing and spoof-detection, with threading and concurrent-processing patterns applied so inference doesn't bottleneck the pipeline. A related motion-detection pipeline shares the same computer-vision foundation."
   },
   nats: {
     simple: "A reusable Python library that lets services send and receive messages reliably using NATS JetStream, so teams don't have to build that plumbing themselves.",
     technical: "This library implements NATS/NATS JetStream publisher and subscriber workflows, including stream and consumer management, message acknowledgements, and retry mechanisms — designed to be imported across services for consistent event-driven messaging."
   },
   jira: {
-    simple: "An automated reporting tool that pulls Jira data and turns it into quality and activity tracking sheets, so the engineering team can see how delivery is going at a glance.",
-    technical: "Uses Python APIs and Jenkins to automate Jira-based engineering report generation, introducing structured Defect Quality and Scrum Quality tracking sheets alongside Review Activity and Sprint Activity tracking modules."
+    simple: "JIRA_REPORTS Framework is an automated reporting tool that pulls Jira data and turns it into quality and activity tracking sheets, so the engineering team can see how delivery is going at a glance.",
+    technical: "Uses Python APIs and Jenkins to automate Jira-based engineering report generation, introducing structured Defect Quality and Scrum Quality tracking sheets alongside Review Activity and Sprint Activity tracking modules.",
+    Project_Link: "https://github.com/Mehak692002/jira_reports"
   },
   sleep: {
     simple: "Sleep Pattern Analysis is an AI-powered recommendation platform that personalizes content using machine learning and thoughtful data preprocessing.",
     technical: "This project applies supervised learning to a structured health dataset with preprocessing, feature engineering, and performance evaluation to uncover patterns in sleep behavior, deployed via Vercel, Neon, and Render.",
     Project_Link : "https://sleep-recommendation-system.vercel.app/"
-
   },
   solitude: {
     simple: "Solitude Selections is an AI-powered recommendation platform that personalizes recommendations using data preprocessing, feature engineering, and modular machine learning pipelines.",
     technical: "This project combines feature engineering, recommendation pipelines, and reusable, object-oriented Python modules to build a scalable recommendation system — published as a CRC Press research contribution in 2025."
   }
 };
-
 projectButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const project = button.dataset.project;
@@ -373,13 +348,11 @@ projectButtons.forEach((button) => {
     }
   });
 });
-
 if (analyzeBtn && jobDescription && analysisResult) {
   analyzeBtn.addEventListener("click", () => {
     const text = jobDescription.value.toLowerCase();
     const strengths = [];
     const gaps = [];
-
     if (text.includes("python") || text.includes("backend")) {
       strengths.push("Python backend engineering");
     }
@@ -401,7 +374,6 @@ if (analyzeBtn && jobDescription && analysisResult) {
     if (text.includes("docker") || text.includes("ci/cd") || text.includes("jenkins")) {
       strengths.push("CI/CD and containerized workflows (Docker, Jenkins)");
     }
-
     if (text.includes("kubernetes") || text.includes("aws") || text.includes("cloud infrastructure") || text.includes("terraform")) {
       gaps.push("Large-scale cloud infrastructure (Kubernetes/Terraform) experience");
     }
@@ -411,14 +383,12 @@ if (analyzeBtn && jobDescription && analysisResult) {
     if (text.includes("llm") || text.includes("prompt engineering") || text.includes("fine-tuning")) {
       gaps.push("Advanced LLM-specific production experience");
     }
-
     if (strengths.length === 0) {
       strengths.push("Strong foundation in Python, computer vision, and backend systems");
     }
     if (gaps.length === 0) {
       gaps.push("Broaden large-scale cloud deployment exposure");
     }
-
     const score = Math.min(95, 62 + strengths.length * 6 - gaps.length * 3);
     analysisResult.innerHTML = `
       <h3>Recruiter insight</h3>
@@ -430,7 +400,6 @@ if (analyzeBtn && jobDescription && analysisResult) {
     `;
   });
 }
-
 if (voiceBtn) {
   voiceBtn.addEventListener("click", () => {
     if (window.speechSynthesis) {
@@ -441,7 +410,6 @@ if (voiceBtn) {
     }
   });
 }
-
 if (themeToggle) {
   const storedTheme = localStorage.getItem("mehak-theme");
   if (storedTheme === "light") {
@@ -455,7 +423,6 @@ if (themeToggle) {
     localStorage.setItem("mehak-theme", isLight ? "light" : "dark");
   });
 }
-
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("open");
@@ -468,14 +435,12 @@ if (menuToggle && siteNav) {
     });
   });
 }
-
 const introOverlay = document.getElementById("intro-overlay");
 if (introOverlay) {
   setTimeout(() => {
     introOverlay.classList.add("hidden");
   }, 2200);
 }
-
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -487,5 +452,4 @@ const observer = new IntersectionObserver(
   { threshold: 0.15 }
 );
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-
 initializeChat();
