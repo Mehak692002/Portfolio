@@ -1,731 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <meta content="Mehak Garg's AI-first portfolio — Software Engineer, Backend Developer, and Python Developer, with a live AI assistant for recruiters." name="description"/>
-  <title>
-   Mehak Garg | Software Engineer
-  </title>
-  <link href="styles.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="intro-overlay" id="intro-overlay">
-   <div class="intro-card">
-    <p class="eyebrow">
-     Welcome
-    </p>
-    <h1>
-     Mehak Garg
-    </h1>
-    <p>
-     Python systems for vision, messaging, and machine learning.
-    </p>
-   </div>
-  </div>
-  <div class="background-glow glow-one">
-  </div>
-  <div class="background-glow glow-two">
-  </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mehak Garg — Python software engineer building computer-vision and event-driven messaging systems, with a live AI assistant for recruiters." />
+  <title>Mehak Garg — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
   <header class="site-header">
-   <a class="brand" href="#home">
-    Mehak
-    <span>
-     Garg
-    </span>
-   </a>
-   <button aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menu-toggle">
-    <span>
-    </span>
-    <span>
-    </span>
-    <span>
-    </span>
-   </button>
-   <nav class="site-nav" id="site-nav">
-    <a href="#about">
-     About
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true">◎</span>
+      Mehak Garg
     </a>
-    <a href="#experience">
-     Experience
-    </a>
-    <a href="#projects">
-     Projects
-    </a>
-    <a href="#skills">
-     Skills
-    </a>
-    <a href="#education">
-     Education
-    </a>
-    <a href="#ai-suite">
-     AI Suite
-    </a>
-    <a href="#recruiter">
-     Recruiter Mode
-    </a>
-    <a href="#contact">
-     Contact
-    </a>
-   </nav>
-   <div class="header-actions">
-    <button aria-label="Toggle theme" class="theme-toggle" id="theme-toggle">
-     🌙
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
     </button>
-    <a class="button ghost desktop-cta" href="#contact">
-     Let's connect
-    </a>
-   </div>
+    <nav class="site-nav" id="site-nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#ai-suite">AI Suite</a>
+      <a href="#recruiter">Recruiter Mode</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◐</button>
+      <a class="button ghost desktop-cta" href="#contact">Let's connect</a>
+    </div>
   </header>
+
   <main>
-   <section class="hero section" id="home">
-    <div class="hero-copy reveal">
-     <div class="eyebrow">
-      Software Engineer · Backend Developer · Python Developer
-     </div>
-     <h1>
-      Software engineer building vision, messaging, and ML systems that run in production.
-     </h1>
-     <p class="hero-intro">
-      I'm Mehak Garg. I build Python-based computer-vision microservices, event-driven messaging
-            components with NATS/JetStream, and AI/ML applications — currently contributing to CVVRS (a
-            Face Recognition System and motion-detection pipeline) as a Software Developer Intern.
-     </p>
-     <div class="hero-highlight reveal">
-      <span>
-       Recruiter-ready
-      </span>
-      <strong>
-       Ask my AI about skills, projects, and fit for your next role.
-      </strong>
-     </div>
-     <div class="hero-actions">
-      <a class="button primary" href="#ai-suite">
-       Ask my AI
-      </a>
-      <a class="button secondary" href="#projects">
-       Explore projects
-      </a>
-      <a class="button secondary" download="" href="Mehak_Garg_Resume_SDE.pdf">
-       Download Resume
-      </a>
-     </div>
-     <div class="metrics">
+    <section class="hero section" id="home">
+      <div class="hero-copy">
+        <p class="kicker">Software engineer · Faridabad, India</p>
+        <h1>Building the systems that let machines see, listen, and talk to each other.</h1>
+        <p class="hero-intro">
+          I'm Mehak Garg, a Python engineer working on computer-vision microservices and
+          event-driven messaging infrastructure. At Veya Technologies I helped build CVVRS —
+          a face-recognition and motion-detection system — and a reusable NATS JetStream
+          messaging library used across its services.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#ai-suite">Ask my AI assistant</a>
+          <a class="button secondary" href="#projects">See the work</a>
+          <a class="button secondary" download href="Mehak_Garg_Resume_SDE.pdf">Download résumé</a>
+        </div>
+        <dl class="readout">
+          <div><dt>Internships</dt><dd>02</dd></div>
+          <div><dt>Publications</dt><dd>02</dd></div>
+          <div><dt>Certifications</dt><dd>04</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-portrait">
+        <div class="viewfinder">
+          <span class="corner tl"></span><span class="corner tr"></span>
+          <span class="corner bl"></span><span class="corner br"></span>
+          <span class="scan-tag">FRS · tracking</span>
+          <img src="profile-photo.jpg" alt="Portrait of Mehak Garg" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-grid" id="about">
       <div>
-       <strong>
-        2
-       </strong>
-       <span>
-        Software dev internships
-       </span>
+        <p class="kicker">About</p>
+        <h2>Backend depth, applied to vision and distributed systems.</h2>
+        <p>
+          I'm finishing my M.Tech in Computer Science while working as a Software Developer
+          Intern, where I build Python microservices for computer vision, a reusable messaging
+          library on NATS JetStream, and automation that gives engineering teams visibility into
+          delivery quality. My background also spans machine-learning research, so I move
+          comfortably between production backend work and model-driven experimentation.
+        </p>
       </div>
-      <div>
-       <strong>
-        2
-       </strong>
-       <span>
-        Research publications
-       </span>
+      <div class="about-points">
+        <div class="point">
+          <span class="point-index">CV</span>
+          <div>
+            <h3>Computer vision &amp; microservices</h3>
+            <p>Python microservices using MediaPipe and ONNX for face processing, spoof detection, and motion detection.</p>
+          </div>
+        </div>
+        <div class="point">
+          <span class="point-index">MQ</span>
+          <div>
+            <h3>Event-driven systems</h3>
+            <p>Publisher/subscriber workflows on NATS and NATS JetStream — streams, consumers, acknowledgements, and retries.</p>
+          </div>
+        </div>
+        <div class="point">
+          <span class="point-index">ML</span>
+          <div>
+            <h3>AI/ML &amp; research</h3>
+            <p>Classification and recommendation pipelines end to end, backed by two published research contributions.</p>
+          </div>
+        </div>
       </div>
-      <div>
-       <strong>
-        4
-       </strong>
-       <span>
-        Professional certifications
-       </span>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-heading">
+        <p class="kicker">Experience</p>
+        <h2>Where I've put engineering into practice</h2>
       </div>
-     </div>
-    </div>
-    <div class="hero-card reveal">
-     <div class="card-header">
-      <div>
-       <p class="card-label">
-        AI Portfolio Assistant
-       </p>
-       <h2>
-        Ask me anything
-       </h2>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>Software Developer Intern — Veya Technologies</h3>
+              <span class="timeline-date">Jan 2026 – Jul 2026</span>
+            </div>
+            <p>
+              Built components of CVVRS — a Python-based Face Recognition System using MediaPipe
+              and ONNX, including spoof-detection — plus a motion-detection pipeline. Applied
+              threading and concurrent-processing concepts to keep computer-vision workflows
+              efficient.
+            </p>
+            <p>
+              Built a reusable Python library for NATS/NATS JetStream messaging — publishers,
+              subscribers, stream and consumer management, acknowledgements, and retry
+              mechanisms. Also built the <strong>JIRA_REPORTS Framework</strong>, automating
+              Jira-based engineering reporting with Python APIs and Jenkins, and introducing
+              Defect Quality, Scrum Quality, Review Activity, and Sprint Activity tracking.
+            </p>
+            <span class="timeline-tags">Python · MediaPipe · ONNX · NATS JetStream · Threading · Jenkins</span>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>Software Developer Intern — McDermott</h3>
+              <span class="timeline-date">Jul 2022 – Aug 2022</span>
+            </div>
+            <p>
+              Developed Python data-processing pipelines for structured datasets, including
+              validation and transformation workflows, and wrote optimized SQL queries for data
+              extraction. Collaborated with stakeholders to gather requirements and documented
+              workflows for maintainability.
+            </p>
+            <span class="timeline-tags">Python · SQL · Data Validation · Documentation</span>
+          </div>
+        </article>
       </div>
-      <span class="status-pill">
-       Live
-      </span>
-     </div>
-     <div class="chat-window" id="chat-window">
-     </div>
-     <div class="prompt-row" id="prompt-row">
-      <button class="prompt-chip" data-prompt="Why should I hire Mehak?">
-       Why hire Mehak?
-      </button>
-      <button class="prompt-chip" data-prompt="Tell me about CVVRS.">
-       CVVRS project
-      </button>
-      <button class="prompt-chip" data-prompt="What messaging systems has she built?">
-       Messaging
-      </button>
-      <button class="prompt-chip" data-prompt="What skills does she have?">
-       Skills
-      </button>
-     </div>
-     <form class="chat-form" id="chat-form">
-      <input autocomplete="off" id="chat-input" placeholder="Try: Explain CVVRS or ask about NATS" type="text"/>
-      <button type="submit">
-       Send
-      </button>
-     </form>
-     <button class="voice-btn" id="voice-btn" type="button">
-      🎤 Voice assist
-     </button>
-    </div>
-   </section>
-   <section class="section about-grid reveal" id="about">
-    <div>
-     <div class="eyebrow">
-      About me
-     </div>
-     <h2>
-      Software engineering depth, applied to vision and distributed systems.
-     </h2>
-     <p>
-      I'm finishing my M.Tech in Computer Science while working as a Software Developer Intern, where I
-            build Python microservices for computer vision, reusable messaging libraries on NATS JetStream,
-            and automation that gives engineering teams visibility into delivery quality. My background also
-            spans machine learning research, so I move comfortably between production backend work and
-            model-driven experimentation.
-     </p>
-    </div>
-    <div class="about-points">
-     <div>
-      <h3>
-       Computer vision &amp; microservices
-      </h3>
-      <p>
-       I build Python microservices using MediaPipe and ONNX for face processing, spoof detection, and motion detection.
-      </p>
-     </div>
-     <div>
-      <h3>
-       Event-driven systems
-      </h3>
-      <p>
-       I design publisher/subscriber workflows on NATS and NATS JetStream, with stream management, acknowledgements, and retries.
-      </p>
-     </div>
-     <div>
-      <h3>
-       AI/ML &amp; research
-      </h3>
-      <p>
-       I build classification and recommendation pipelines end-to-end, with two published research contributions.
-      </p>
-     </div>
-    </div>
-   </section>
-   <section class="section reveal" id="experience">
-    <div class="section-heading">
-     <div class="eyebrow">
-      Experience
-     </div>
-     <h2>
-      Where I've put engineering into practice
-     </h2>
-    </div>
-    <div class="timeline">
-     <article class="timeline-item">
-      <div class="timeline-marker">
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading">
+        <p class="kicker">Selected work</p>
+        <h2>Projects with built-in AI explanations</h2>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         Software Developer Intern — Veya Technologies
-        </h3>
-        <span class="timeline-date">
-         Jan 2026 – Present
-        </span>
-       </div>
-       <p>
-        Building CVVRS — components of a Python-based Face Recognition System using MediaPipe and
-                ONNX, including spoof-detection capabilities, plus a motion-detection pipeline. Applying
-                threading and concurrent-processing concepts to keep computer-vision workflows efficient.
-       </p>
-       <p>
-        Built a reusable Python library for NATS/NATS JetStream messaging — publishers, subscribers,
-                stream and consumer management, acknowledgements, and retry mechanisms. Built the
-        <strong>
-         JIRA_REPORTS Framework
-        </strong>
-        , automating Jira-based engineering reporting with Python
-                APIs and Jenkins, and introducing Defect Quality, Scrum Quality, Review Activity, and Sprint
-                Activity tracking.
-       </p>
-       <span class="timeline-tags">
-        Python · MediaPipe · ONNX · NATS JetStream · Threading · Jenkins
-       </span>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>CVVRS — Computer Vision Video Recognition System</h3>
+              <span class="timeline-date">Veya Technologies</span>
+            </div>
+            <p>Python microservice components for a face-recognition system and motion-detection pipeline, built with MediaPipe and ONNX, including spoof detection and concurrent processing.</p>
+            <span class="timeline-tags">Python · MediaPipe · ONNX · Threading · Computer Vision</span>
+            <div class="project-actions">
+              <button class="project-action" data-mode="simple" data-project="frs">Explain in 30s</button>
+              <button class="project-action" data-mode="technical" data-project="frs">Technical depth</button>
+            </div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>NATS Messaging Library</h3>
+              <span class="timeline-date">Veya Technologies</span>
+            </div>
+            <p>A reusable Python library for NATS/NATS JetStream messaging with publisher and subscriber workflows, stream and consumer management, acknowledgements, and retry mechanisms.</p>
+            <span class="timeline-tags">Python · NATS JetStream · Pub/Sub · Event-Driven Systems</span>
+            <div class="project-actions">
+              <button class="project-action" data-mode="simple" data-project="nats">Explain in 30s</button>
+              <button class="project-action" data-mode="technical" data-project="nats">Technical depth</button>
+            </div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>JIRA_REPORTS Framework</h3>
+              <span class="timeline-date">Veya Technologies · Open Source</span>
+            </div>
+            <p>Automated Jira-based engineering report generation using Python APIs and Jenkins, with Defect Quality, Scrum Quality, Review Activity, and Sprint Activity tracking.</p>
+            <p class="project-link"><a href="https://github.com/Mehak692002/jira_reports" target="_blank" rel="noreferrer">View on GitHub →</a></p>
+            <span class="timeline-tags">Python · Jira API · Jenkins · Excel Export · Analytics</span>
+            <div class="project-actions">
+              <button class="project-action" data-mode="simple" data-project="jira">Explain in 30s</button>
+              <button class="project-action" data-mode="technical" data-project="jira">Technical depth</button>
+            </div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>Sleep Pattern Analysis</h3>
+              <span class="timeline-date">Personal Project</span>
+            </div>
+            <p>A healthcare-focused ML application that analyzes sleep patterns and converts predictions into personalized lifestyle recommendations.</p>
+            <p class="project-link"><a href="https://sleep-recommendation-system.vercel.app/" target="_blank" rel="noreferrer">View project →</a></p>
+            <span class="timeline-tags">Python · Scikit-learn · TensorFlow/Keras · Vercel · Neon</span>
+            <div class="project-actions">
+              <button class="project-action" data-mode="simple" data-project="sleep">Explain in 30s</button>
+              <button class="project-action" data-mode="technical" data-project="sleep">Technical depth</button>
+            </div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-head">
+              <h3>Solitude Selections</h3>
+              <span class="timeline-date">CRC Press · 2025</span>
+            </div>
+            <p>An end-to-end AI-powered recommendation platform with modular data ingestion, preprocessing, and recommendation pipelines, published as a research contribution.</p>
+            <span class="timeline-tags">Python · Pandas · Recommendation Systems · CRC Press 2025</span>
+            <div class="project-actions">
+              <button class="project-action" data-mode="simple" data-project="solitude">Explain in 30s</button>
+              <button class="project-action" data-mode="technical" data-project="solitude">Technical depth</button>
+            </div>
+          </div>
+        </article>
       </div>
-     </article>
-     <article class="timeline-item">
-      <div class="timeline-marker">
+      <div class="explainer-panel">
+        <p class="explainer-label">Project explainer</p>
+        <p id="explainer-output">Select a project button above to see a concise explanation.</p>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         Software Developer Intern — McDermott
-        </h3>
-        <span class="timeline-date">
-         Jul 2022 – Aug 2022
-        </span>
-       </div>
-       <p>
-        Developed Python data-processing pipelines for structured datasets, including validation and
-                transformation workflows, and wrote optimized SQL queries for data extraction. Collaborated with
-                stakeholders to gather requirements and documented workflows for maintainability.
-       </p>
-       <span class="timeline-tags">
-        Python · SQL · Data Validation · Documentation
-       </span>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading">
+        <p class="kicker">Skills</p>
+        <h2>Technical strengths across vision, messaging, and backend</h2>
       </div>
-     </article>
-    </div>
-   </section>
-   <section class="section reveal" id="projects">
-    <div class="section-heading">
-     <div class="eyebrow">
-      Selected work
-     </div>
-     <h2>
-      Projects with built-in AI explanations
-     </h2>
-    </div>
-    <div class="timeline">
-     <article class="timeline-item">
-      <div class="timeline-marker">
+      <div class="skill-grid">
+        <article class="card">
+          <h3>Backend &amp; software</h3>
+          <p>Python, SQL, REST APIs, microservices, OOP, data structures &amp; algorithms, MySQL, PostgreSQL, Git, Jira, Bitbucket, debugging, and code review.</p>
+        </article>
+        <article class="card">
+          <h3>Computer vision &amp; AI</h3>
+          <p>MediaPipe, ONNX, spoof detection, threading, scikit-learn, TensorFlow/Keras, feature engineering, and model integration for real-time pipelines.</p>
+        </article>
+        <article class="card">
+          <h3>Messaging &amp; distributed systems</h3>
+          <p>NATS and NATS JetStream, pub/sub, streams, consumers, message acknowledgements, retry handling, and event-driven architecture.</p>
+        </article>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         CVVRS — Computer Vision Video Recognition System
-        </h3>
-        <span class="timeline-date">
-         Veya Technologies
-        </span>
-       </div>
-       <p>
-        Python microservice components for a Face Recognition System and motion-detection pipeline, built with MediaPipe and ONNX, including spoof-detection and concurrent processing.
-       </p>
-       <span class="timeline-tags">
-        Python · MediaPipe · ONNX · Threading · Computer Vision
-       </span>
-       <div class="project-actions">
-        <button class="project-action" data-mode="simple" data-project="frs">
-         Explain in 30s
-        </button>
-        <button class="project-action" data-mode="technical" data-project="frs">
-         Technical depth
-        </button>
-       </div>
+      <div class="skills-list">
+        <span>Python</span><span>SQL</span><span>C/C++</span><span>Microservices</span><span>REST APIs</span>
+        <span>MediaPipe</span><span>ONNX</span><span>Spoof Detection</span><span>NATS</span><span>NATS JetStream</span>
+        <span>Threading</span><span>MySQL</span><span>PostgreSQL</span><span>Git</span><span>Bitbucket</span>
+        <span>Jira</span><span>Jenkins</span><span>Docker</span><span>Linux</span><span>Scikit-learn</span>
+        <span>TensorFlow</span><span>Agile/Scrum</span>
       </div>
-     </article>
-     <article class="timeline-item">
-      <div class="timeline-marker">
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-heading">
+        <p class="kicker">Education &amp; publications</p>
+        <h2>Learning, building, and sharing knowledge</h2>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         NATS Messaging Library
-        </h3>
-        <span class="timeline-date">
-         Veya Technologies
-        </span>
-       </div>
-       <p>
-        A reusable Python library for NATS/NATS JetStream messaging with publisher and subscriber workflows, stream and consumer management, acknowledgements, and retry mechanisms.
-       </p>
-       <span class="timeline-tags">
-        Python · NATS JetStream · Pub/Sub · Event-Driven Systems
-       </span>
-       <div class="project-actions">
-        <button class="project-action" data-mode="simple" data-project="nats">
-         Explain in 30s
-        </button>
-        <button class="project-action" data-mode="technical" data-project="nats">
-         Technical depth
-        </button>
-       </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <h3>Education</h3>
+          <p>M.Tech in Computer Science &amp; Engineering, J.C. Bose University of Science &amp; Technology — CGPA 8.64 (2024–2026).</p>
+          <p>B.Tech in Computer Science &amp; Engineering, Manav Rachna International Institute of Research and Studies — CGPA 8.08 (2020–2024).</p>
+        </article>
+        <article class="project-card">
+          <h3>Publications &amp; certifications</h3>
+          <p>Published in CRC Press, Taylor &amp; Francis Group on "Solitude Assistance: An AI Powered Recommendation Platform," and an IEEE review paper on cybersecurity in online banking.</p>
+          <p>Certified in Google Data Analytics, IBM Deep Learning with TensorFlow, IBM Generative AI Fundamentals, and IBM Introduction to Cloud Computing.</p>
+        </article>
       </div>
-     </article>
-     <article class="timeline-item">
-      <div class="timeline-marker">
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="section-heading">
+        <p class="kicker">Testimonials</p>
+        <h2>What people notice about my approach</h2>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         JIRA_REPORTS Framework
-        </h3>
-        <span class="timeline-date">
-         Veya Technologies · Open Source
-        </span>
-       </div>
-       <p>
-        Automated Jira-based engineering report generation using Python APIs and Jenkins, with Defect Quality, Scrum Quality, Review Activity, and Sprint Activity tracking.
-       </p>
-       <p class="project-link">
-        <a href="https://github.com/Mehak692002/jira_reports" rel="noreferrer" target="_blank">
-         View on GitHub →
-        </a>
-       </p>
-       <span class="timeline-tags">
-        Python · Jira API · Jenkins · Excel Export · Analytics
-       </span>
-       <div class="project-actions">
-        <button class="project-action" data-mode="simple" data-project="jira">
-         Explain in 30s
-        </button>
-        <button class="project-action" data-mode="technical" data-project="jira">
-         Technical depth
-        </button>
-       </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <h3>Problem-focused builder</h3>
+          <p>"She brings a clear engineering mindset and a practical grasp of computer vision and messaging systems that make ideas actionable."</p>
+        </article>
+        <article class="project-card">
+          <h3>Research + execution</h3>
+          <p>"She balances thoughtful research with strong implementation skills, which makes her work both insightful and usable."</p>
+        </article>
+        <article class="project-card">
+          <h3>Reliable collaborator</h3>
+          <p>"Her communication and backend awareness stand out in team settings where clarity and delivery matter."</p>
+        </article>
       </div>
-     </article>
-     <article class="timeline-item">
-      <div class="timeline-marker">
+    </section>
+
+    <section class="section" id="ai-suite">
+      <div class="section-heading">
+        <p class="kicker">AI suite</p>
+        <h2>Interactive experiences that make the portfolio memorable</h2>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         Sleep Pattern Analysis
-        </h3>
-        <span class="timeline-date">
-         Personal Project
-        </span>
-       </div>
-       <p>
-        A healthcare-focused ML application that analyzes sleep patterns and converts predictions into personalized lifestyle recommendations.
-       </p>
-       <p class="project-link">
-        <a href="https://sleep-recommendation-system.vercel.app/" rel="noreferrer" target="_blank">
-         View Project →
-        </a>
-       </p>
-       <span class="timeline-tags">
-        Python · Scikit-learn · TensorFlow/Keras · Vercel · Neon
-       </span>
-       <div class="project-actions">
-        <button class="project-action" data-mode="simple" data-project="sleep">
-         Explain in 30s
-        </button>
-        <button class="project-action" data-mode="technical" data-project="sleep">
-         Technical depth
-        </button>
-       </div>
+      <div class="ai-suite-grid">
+        <div class="skill-grid ai-suite-cards">
+          <article class="card">
+            <h3>Ask my AI</h3>
+            <p>A live, context-aware assistant that remembers what you've asked and follows up with relevant suggestions — a personal guide to my work.</p>
+          </article>
+          <article class="card">
+            <h3>Project explainer</h3>
+            <p>Each project can be explained in simple or technical mode, so recruiters and engineers can explore at their own depth.</p>
+          </article>
+          <article class="card">
+            <h3>Recruiter mode</h3>
+            <p>Paste a job description below and get a quick match report with strengths, gaps, and fit insights.</p>
+          </article>
+        </div>
+
+        <div class="hero-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">AI portfolio assistant</p>
+              <h3>Ask me anything</h3>
+            </div>
+            <span class="status-pill"><span class="status-dot"></span>Live</span>
+          </div>
+          <div class="chat-window" id="chat-window"></div>
+          <div class="prompt-row" id="prompt-row">
+            <button class="prompt-chip" data-prompt="Why should I hire Mehak?">Why hire Mehak?</button>
+            <button class="prompt-chip" data-prompt="Tell me about CVVRS.">CVVRS project</button>
+            <button class="prompt-chip" data-prompt="What messaging systems has she built?">Messaging</button>
+            <button class="prompt-chip" data-prompt="What skills does she have?">Skills</button>
+          </div>
+          <form class="chat-form" id="chat-form">
+            <input type="text" id="chat-input" placeholder="Try: explain CVVRS, or ask about NATS" autocomplete="off" />
+            <button type="submit">Send</button>
+          </form>
+          <button class="voice-btn" id="voice-btn" type="button">Voice assist</button>
+        </div>
       </div>
-     </article>
-     <article class="timeline-item">
-      <div class="timeline-marker">
+    </section>
+
+    <section class="section" id="recruiter">
+      <div class="section-heading">
+        <p class="kicker">Recruiter mode</p>
+        <h2>Paste a job description and discover your fit instantly</h2>
       </div>
-      <div class="timeline-content">
-       <div class="timeline-head">
-        <h3>
-         Solitude Selections
-        </h3>
-        <span class="timeline-date">
-         CRC Press 2025
-        </span>
-       </div>
-       <p>
-        An end-to-end AI-powered recommendation platform with modular data ingestion, preprocessing, and recommendation pipelines, published as a research contribution.
-       </p>
-       <span class="timeline-tags">
-        Python · Pandas · Recommendation Systems · CRC Press 2025
-       </span>
-       <div class="project-actions">
-        <button class="project-action" data-mode="simple" data-project="solitude">
-         Explain in 30s
-        </button>
-        <button class="project-action" data-mode="technical" data-project="solitude">
-         Technical depth
-        </button>
-       </div>
+      <div class="recruiter-card">
+        <div>
+          <label for="job-description">Job description</label>
+          <textarea id="job-description" placeholder="Paste a role like Python Backend Engineer, Computer Vision Engineer, or Platform Engineer..."></textarea>
+          <button class="button primary" id="analyze-btn" type="button">Analyze fit</button>
+        </div>
+        <div class="analysis-result" id="analysis-result">
+          <p class="explainer-label">Recruiter insight</p>
+          <p>Paste a role description to see a match score, strengths, and skills to improve.</p>
+        </div>
       </div>
-     </article>
-    </div>
-    <div class="explainer-panel" id="explainer-panel">
-     <h3>
-      Project explainer
-     </h3>
-     <p id="explainer-output">
-      Select a project button to see a concise AI-style explanation.
-     </p>
-    </div>
-   </section>
-   <section class="section reveal" id="skills">
-    <div class="section-heading">
-     <div class="eyebrow">
-      Skills
-     </div>
-     <h2>
-      Technical strengths across vision, messaging, and backend
-     </h2>
-    </div>
-    <div class="skill-grid">
-     <article class="card">
-      <h3>
-       Backend &amp; Software
-      </h3>
-      <p>
-       Python, SQL, REST APIs, Microservices, OOP, Data Structures &amp; Algorithms, MySQL, PostgreSQL, Git, Jira, Bitbucket, debugging, and code review.
-      </p>
-     </article>
-     <article class="card">
-      <h3>
-       Computer Vision &amp; AI
-      </h3>
-      <p>
-       MediaPipe, ONNX, spoof detection, threading, scikit-learn, TensorFlow/Keras, feature engineering, and model integration for real-time pipelines.
-      </p>
-     </article>
-     <article class="card">
-      <h3>
-       Messaging &amp; Distributed Systems
-      </h3>
-      <p>
-       NATS and NATS JetStream, pub/sub, streams, consumers, message acknowledgements, retry handling, and event-driven architecture.
-      </p>
-     </article>
-    </div>
-    <div class="skills-list">
-     <span>
-      Python
-     </span>
-     <span>
-      SQL
-     </span>
-     <span>
-      Microservices
-     </span>
-     <span>
-      REST APIs
-     </span>
-     <span>
-      MediaPipe
-     </span>
-     <span>
-      ONNX
-     </span>
-     <span>
-      Spoof Detection
-     </span>
-     <span>
-      NATS
-     </span>
-     <span>
-      NATS JetStream
-     </span>
-     <span>
-      Threading
-     </span>
-     <span>
-      MySQL
-     </span>
-     <span>
-      PostgreSQL
-     </span>
-     <span>
-      Git
-     </span>
-     <span>
-      Bitbucket
-     </span>
-     <span>
-      Jira
-     </span>
-     <span>
-      Jenkins
-     </span>
-     <span>
-      Docker
-     </span>
-     <span>
-      Linux
-     </span>
-     <span>
-      Scikit-learn
-     </span>
-     <span>
-      TensorFlow
-     </span>
-     <span>
-      Agile/Scrum
-     </span>
-    </div>
-   </section>
-   <section class="section reveal" id="education">
-    <div class="section-heading">
-     <div class="eyebrow">
-      Education &amp; publications
-     </div>
-     <h2>
-      Learning, building, and sharing knowledge
-     </h2>
-    </div>
-    <div class="project-grid">
-     <article class="project-card">
-      <h3>
-       Education
-      </h3>
-      <p>
-       M.Tech in Computer Science &amp; Engineering, J.C. Bose University of Science &amp; Technology, CGPA 8.64.
-      </p>
-      <p>
-       B.Tech in Computer Science &amp; Engineering, Manav Rachna International Institute of Research and Studies, CGPA 8.08.
-      </p>
-     </article>
-     <article class="project-card">
-      <h3>
-       Publications &amp; certifications
-      </h3>
-      <p>
-       Published in CRC Press on "Solitude Assistance: An AI Powered Recommendation Platform," and an IEEE review paper on cybersecurity in online banking.
-      </p>
-      <p>
-       Certified in Google Data Analytics, IBM Deep Learning with TensorFlow, IBM Generative AI Fundamentals, and IBM Cloud Computing.
-      </p>
-     </article>
-    </div>
-   </section>
-   <section class="section reveal" id="testimonials">
-    <div class="section-heading">
-     <div class="eyebrow">
-      Testimonials
-     </div>
-     <h2>
-      What people notice about my approach
-     </h2>
-    </div>
-    <div class="project-grid">
-     <article class="project-card">
-      <h3>
-       Problem-focused builder
-      </h3>
-      <p>
-       "I bring a clear engineering mindset and a practical grasp of computer vision and messaging systems that make ideas actionable."
-      </p>
-     </article>
-     <article class="project-card">
-      <h3>
-       Research + execution
-      </h3>
-      <p>
-       "I balance thoughtful research with strong implementation skills, which makes her work both insightful and usable."
-      </p>
-     </article>
-     <article class="project-card">
-      <h3>
-       Reliable collaborator
-      </h3>
-      <p>
-       "My communication and backend awareness stand out in team settings where clarity and delivery matter."
-      </p>
-     </article>
-    </div>
-   </section>
-   <section class="section reveal" id="ai-suite">
-    <div class="section-heading">
-     <div class="eyebrow">
-      AI suite
-     </div>
-     <h2>
-      Interactive experiences that make the portfolio memorable
-     </h2>
-    </div>
-    <div class="skill-grid">
-     <article class="card">
-      <h3>
-       Ask my AI
-      </h3>
-      <p>
-       A live, context-aware assistant that remembers what you've asked and follows up with relevant suggestions, as if speaking to a personal guide to my work.
-      </p>
-     </article>
-     <article class="card">
-      <h3>
-       Project explainer
-      </h3>
-      <p>
-       Each project can be explained in simple or technical mode so recruiters and engineers can explore at their own depth.
-      </p>
-     </article>
-     <article class="card">
-      <h3>
-       Recruiter mode
-      </h3>
-      <p>
-       Paste a job description and get a quick match report with strengths, gaps, and fit insights.
-      </p>
-     </article>
-    </div>
-   </section>
-   <section class="section reveal" id="recruiter">
-    <div class="section-heading">
-     <div class="eyebrow">
-      Recruiter mode
-     </div>
-     <h2>
-      Paste a job description and discover your fit instantly
-     </h2>
-    </div>
-    <div class="recruiter-card">
-     <div>
-      <label for="job-description">
-       Job description
-      </label>
-      <textarea id="job-description" placeholder="Paste a role like Python Backend Engineer, Computer Vision Engineer, or Platform Engineer..."></textarea>
-      <button class="button primary" id="analyze-btn" type="button">
-       Analyze fit
-      </button>
-     </div>
-     <div class="analysis-result" id="analysis-result">
-      <h3>
-       Recruiter insight
-      </h3>
-      <p>
-       Upload or paste a role description to see a match score, strengths, and skills to improve.
-      </p>
-     </div>
-    </div>
-   </section>
-   <section class="section reveal">
-    <div class="cta-card">
-     <div>
-      <div class="eyebrow">
-       Ready to collaborate?
+    </section>
+
+    <section class="section">
+      <div class="cta-card">
+        <div>
+          <p class="kicker">Ready to collaborate?</p>
+          <h2>Let's build something meaningful together.</h2>
+        </div>
+        <div class="cta-actions">
+          <a class="button primary" href="mailto:rkgarg25@gmail.com">Email me</a>
+          <a class="button secondary" href="https://github.com/Mehak692002" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
       </div>
-      <h2>
-       Let's build something meaningful together.
-      </h2>
-     </div>
-     <div>
-      <a class="button primary" href="mailto:rkgarg25@gmail.com">
-       Email me
-      </a>
-      <a class="button secondary" href="https://github.com/Mehak692002" rel="noreferrer" target="_blank">
-       GitHub
-      </a>
-     </div>
-    </div>
-   </section>
+    </section>
   </main>
+
   <footer class="site-footer" id="contact">
-   <p>
-    ©
-    <span id="year">
-    </span>
-    Mehak Garg. Built for thoughtful technology.
-   </p>
+    <p>Faridabad, India · +91 98686 68909 · <a href="mailto:rkgarg25@gmail.com">rkgarg25@gmail.com</a></p>
+    <p>© <span id="year"></span> Mehak Garg. Built for thoughtful technology.</p>
   </footer>
+
   <script>
-   window.__PORTFOLIO_BACKEND_URL__ = "https://your-backend-url.onrender.com";
+    window.__PORTFOLIO_BACKEND_URL__ = "https://your-backend-url.onrender.com";
   </script>
-  <script src="script.js">
-  </script>
- </body>
+  <script src="script.js"></script>
+</body>
 </html>

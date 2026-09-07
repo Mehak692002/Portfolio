@@ -12,28 +12,26 @@ const analysisResult = document.getElementById("analysis-result");
 const menuToggle = document.getElementById("menu-toggle");
 const siteNav = document.getElementById("site-nav");
 const themeToggle = document.getElementById("theme-toggle");
+
 const backendBaseUrl = (window.__PORTFOLIO_BACKEND_URL__ || "").trim() || (
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8001"
     : "https://your-backend-url.onrender.com"
 );
 const chatEndpoint = `${backendBaseUrl.replace(/\/$/, "")}/api/chat`;
+
 if (year) {
   year.textContent = new Date().getFullYear();
 }
+
 /* ---------------------------------------------------------------------
  * Conversation state
  * -------------------------------------------------------------------*/
-// Full turn history sent to the backend so a real LLM (when configured)
-// can hold an actual multi-turn conversation instead of answering each
-// message in isolation.
 let conversationHistory = [];
-// Last topic discussed, used so "tell me more" / "go deeper" style
-// follow-ups can expand on what was just said instead of resetting.
 let lastTopic = null;
+
 /* ---------------------------------------------------------------------
- * Knowledge base: topics, keyword triggers, varied phrasings, and the
- * follow-up suggestions to surface after each topic.
+ * Knowledge base
  * -------------------------------------------------------------------*/
 const topics = {
   greeting: {
@@ -42,13 +40,13 @@ const topics = {
       "Hey! I'm Mehak's AI portfolio guide. Ask me about her experience, projects, skills, or why she'd be a strong hire.",
       "Hello! Happy to walk you through Mehak's work — try asking about the Face Recognition System or her NATS messaging library."
     ],
-    detail: "I can go deeper on internships, specific projects, tech stack, research, or availability — just ask.",
+    detail: "I can go deeper on internships, specific projects, tech stack, research, or how to reach her — just ask.",
     suggestions: ["Why hire Mehak?", "Tell me about her experience", "What's she working on right now?"]
   },
   hire: {
     keywords: ["hire", "why should", "why hire", "strong fit", "good candidate", "worth hiring"],
     replies: [
-      "You should hire Mehak because she pairs production backend engineering with real computer-vision and event-driven systems experience — she's currently shipping CVVRS and messaging components, not just studying them.",
+      "You should hire Mehak because she pairs production backend engineering with real computer-vision and event-driven systems experience — she shipped CVVRS and messaging components, not just studied them.",
       "Strong reasons to hire her: hands-on Python microservice work on a live Face Recognition System, a reusable NATS JetStream messaging library she built from scratch, and a research background that shows she can go deep when needed."
     ],
     detail: "She's also comfortable owning ambiguity — she introduced her own quality-tracking sheets at Veya Technologies rather than waiting to be asked.",
@@ -57,8 +55,8 @@ const topics = {
   experience: {
     keywords: ["experience", "intern", "internship", "veya", "mcdermott", "work history", "job"],
     replies: [
-      "She's currently a Software Developer Intern at Veya Technologies (Jan 2026–present), building CVVRS — a Python-based Face Recognition System and motion-detection pipeline with MediaPipe and ONNX — plus a reusable NATS JetStream messaging library.",
-      "Her experience spans two internships: Veya Technologies, where she works on the CVVRS computer-vision system and messaging infrastructure, and McDermott, where she built Python data-processing pipelines and optimized SQL queries."
+      "She was a Software Developer Intern at Veya Technologies (Jan–Jul 2026), building CVVRS — a Python-based Face Recognition System and motion-detection pipeline with MediaPipe and ONNX — plus a reusable NATS JetStream messaging library.",
+      "Her experience spans two internships: Veya Technologies, where she worked on the CVVRS computer-vision system and messaging infrastructure, and McDermott, where she built Python data-processing pipelines and optimized SQL queries."
     ],
     detail: "At Veya she also built the JIRA_REPORTS Framework, automating Jira-based engineering reporting with Python and Jenkins, and adding Defect Quality, Scrum Quality, Review Activity, and Sprint Activity tracking that didn't exist before.",
     suggestions: ["Tell me about CVVRS", "What's the NATS messaging library?", "What did she do at McDermott?"]
@@ -66,8 +64,8 @@ const topics = {
   frs: {
     keywords: ["frs", "cvvrs", "face recognition", "spoof", "motion detection", "computer vision", "mediapipe", "onnx"],
     replies: [
-      "CVVRS (Computer Vision Video Recognition System) is her project covering a Python-based Face Recognition System built with MediaPipe and ONNX — face processing and spoof-detection — alongside a separate motion-detection pipeline.",
-      "The CVVRS work involves real-time computer-vision processing: face detection and spoof-detection with MediaPipe and ONNX, with threading and concurrent-processing techniques applied to keep the pipeline efficient."
+      "CVVRS (Computer Vision Video Recognition System) is her project covering a Python-based Face Recognition System built with MediaPipe and ONNX — face processing and spoof detection — alongside a separate motion-detection pipeline.",
+      "The CVVRS work involves real-time computer-vision processing: face detection and spoof detection with MediaPipe and ONNX, with threading and concurrent-processing techniques applied to keep the pipeline efficient."
     ],
     detail: "Technically, this means balancing model inference latency against throughput — she applies threading and concurrent-processing patterns so the CVVRS vision pipeline doesn't block on a single frame.",
     suggestions: ["What's the NATS messaging library?", "What ML tools does she use?", "Show me her other projects"]
@@ -114,11 +112,11 @@ const topics = {
       "Her core stack is Python, SQL, and C/C++ basics, with REST APIs, microservices, and OOP for backend work; MediaPipe, ONNX, scikit-learn, and TensorFlow/Keras for AI and computer vision; and NATS/NATS JetStream for event-driven messaging.",
       "Day to day she works across Python, MySQL/PostgreSQL, Git, Bitbucket, Jira, and Jenkins, plus Docker, Linux, and Agile/Scrum practices — with computer vision and messaging systems as her current specialization."
     ],
-    detail: "She's also comfortable with data structures & algorithms and threading/concurrency, which shows up directly in how she's built the CVVRS face-recognition and motion-detection pipelines.",
+    detail: "She's also comfortable with data structures & algorithms and threading/concurrency, which shows up directly in how she built the CVVRS face-recognition and motion-detection pipelines.",
     suggestions: ["Tell me about CVVRS", "What's the NATS messaging library?", "Any research publications?"]
   },
   research: {
-    keywords: ["research", "publication", "paper", "ieee", "thesis", "sasa"],
+    keywords: ["research", "publication", "paper", "ieee", "thesis"],
     replies: [
       "She has two publications: 'Solitude Assistance: An AI Powered Recommendation Platform' in CRC Press, Taylor & Francis Group (2025), and an IEEE review paper on cybersecurity in online banking (2022).",
       "Her research background pairs with her engineering work — the recommendation-platform paper grew directly out of the Solitude Selections project she built and shipped."
@@ -136,19 +134,22 @@ const topics = {
     suggestions: ["Any research publications?", "What are her core skills?", "Why should I hire her?"]
   },
   contact: {
-    keywords: ["contact", "email", "reach", "phone", "linkedin", "github", "hire her", "availability", "available"],
+    keywords: ["contact", "email", "reach", "phone", "linkedin", "github", "hire her", "availability", "available", "location", "based"],
     replies: [
-      "Best way to reach her is by email at rkgarg25@gmail.com, or check out her code on GitHub at github.com/Mehak692002.",
-      "You can email her directly at rkgarg25@gmail.com — she's currently interning at Veya Technologies and open to new opportunities as she wraps up her M.Tech."
+      "Best way to reach her is by email at rkgarg25@gmail.com, or check out her code on GitHub at github.com/Mehak692002. She's based in Faridabad, India.",
+      "You can email her directly at rkgarg25@gmail.com — she's finishing her M.Tech and open to new software engineering opportunities."
     ],
     detail: null,
     suggestions: ["Why should I hire her?", "What's she working on right now?", "Show me her projects"]
   }
 };
+
 const followUpKeywords = ["more", "go deeper", "explain further", "tell me more", "details", "elaborate", "expand"];
+
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
+
 function scoreTopics(message) {
   const lower = message.toLowerCase();
   const scores = [];
@@ -156,7 +157,7 @@ function scoreTopics(message) {
     let score = 0;
     topic.keywords.forEach((keyword) => {
       if (lower.includes(keyword)) {
-        score += keyword.split(" ").length; // reward multi-word / specific matches
+        score += keyword.split(" ").length;
       }
     });
     if (score > 0) {
@@ -166,10 +167,12 @@ function scoreTopics(message) {
   scores.sort((a, b) => b.score - a.score);
   return scores;
 }
+
 function isFollowUp(message) {
   const lower = message.toLowerCase();
   return followUpKeywords.some((keyword) => lower.includes(keyword));
 }
+
 function fallbackAnswer(message) {
   const lower = message.trim().toLowerCase();
   if (!lower) {
@@ -195,10 +198,9 @@ function fallbackAnswer(message) {
     suggestions: ["Tell me about her experience", "Show me her projects", "What are her core skills?"]
   };
 }
+
 function addBubble(text, sender = "bot") {
-  if (!chatWindow) {
-    return null;
-  }
+  if (!chatWindow) return null;
   const bubble = document.createElement("div");
   bubble.className = `bubble ${sender}`;
   bubble.textContent = text;
@@ -206,10 +208,9 @@ function addBubble(text, sender = "bot") {
   chatWindow.scrollTop = chatWindow.scrollHeight;
   return bubble;
 }
+
 function addTypingBubble() {
-  if (!chatWindow) {
-    return null;
-  }
+  if (!chatWindow) return null;
   const bubble = document.createElement("div");
   bubble.className = "bubble typing";
   bubble.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
@@ -217,14 +218,11 @@ function addTypingBubble() {
   chatWindow.scrollTop = chatWindow.scrollHeight;
   return bubble;
 }
+
 function renderSuggestions(suggestions) {
   const existing = document.getElementById("dynamic-suggestions");
-  if (existing) {
-    existing.remove();
-  }
-  if (!suggestions || suggestions.length === 0 || !chatWindow) {
-    return;
-  }
+  if (existing) existing.remove();
+  if (!suggestions || suggestions.length === 0 || !chatWindow) return;
   const row = document.createElement("div");
   row.className = "suggestion-row";
   row.id = "dynamic-suggestions";
@@ -243,6 +241,7 @@ function renderSuggestions(suggestions) {
   });
   chatWindow.parentElement.insertBefore(row, chatWindow.nextSibling);
 }
+
 async function getResponse(message) {
   const trimmed = message.trim();
   if (!trimmed) {
@@ -254,9 +253,7 @@ async function getResponse(message) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: trimmed, history: conversationHistory })
     });
-    if (!response.ok) {
-      throw new Error("Backend unavailable");
-    }
+    if (!response.ok) throw new Error("Backend unavailable");
     const data = await response.json();
     if (data.reply) {
       return { reply: data.reply, suggestions: data.suggestions || fallbackAnswer(trimmed).suggestions };
@@ -266,35 +263,29 @@ async function getResponse(message) {
     return fallbackAnswer(trimmed);
   }
 }
+
 function initializeChat() {
   addBubble("Welcome! I'm Mehak's AI portfolio guide. Ask me about her experience, projects, skills, or why she'd be a strong hire — and I'll remember what we've talked about as we go.");
 }
+
 if (chatForm) {
   chatForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const value = chatInput.value.trim();
-    if (!value) {
-      return;
-    }
+    if (!value) return;
     addBubble(value, "user");
     chatInput.value = "";
     const dynamicSuggestions = document.getElementById("dynamic-suggestions");
-    if (dynamicSuggestions) {
-      dynamicSuggestions.remove();
-    }
+    if (dynamicSuggestions) dynamicSuggestions.remove();
     const staticPromptRow = document.getElementById("prompt-row");
-    if (staticPromptRow) {
-      staticPromptRow.style.display = "none";
-    }
+    if (staticPromptRow) staticPromptRow.style.display = "none";
     const typingBubble = addTypingBubble();
     const typingDelay = 450 + Math.random() * 500;
     const [result] = await Promise.all([
       getResponse(value),
       new Promise((resolve) => setTimeout(resolve, typingDelay))
     ]);
-    if (typingBubble) {
-      typingBubble.remove();
-    }
+    if (typingBubble) typingBubble.remove();
     addBubble(result.reply);
     renderSuggestions(result.suggestions);
     conversationHistory.push({ role: "user", content: value });
@@ -304,20 +295,20 @@ if (chatForm) {
     }
   });
 }
+
 promptChips.forEach((chip) => {
   chip.addEventListener("click", () => {
     if (chatInput) {
       chatInput.value = chip.dataset.prompt || "";
-      if (chatForm) {
-        chatForm.requestSubmit();
-      }
+      if (chatForm) chatForm.requestSubmit();
     }
   });
 });
+
 const projectExplainerCopy = {
   frs: {
     simple: "CVVRS (Computer Vision Video Recognition System) is a Python computer-vision microservice that recognizes faces and checks they're real (not a photo or video) using MediaPipe and ONNX.",
-    technical: "Built as Python microservice components for CVVRS — a Face Recognition System — this project uses MediaPipe and ONNX for face processing and spoof-detection, with threading and concurrent-processing patterns applied so inference doesn't bottleneck the pipeline. A related motion-detection pipeline shares the same computer-vision foundation."
+    technical: "Built as Python microservice components for CVVRS — a Face Recognition System — this project uses MediaPipe and ONNX for face processing and spoof detection, with threading and concurrent-processing patterns applied so inference doesn't bottleneck the pipeline. A related motion-detection pipeline shares the same computer-vision foundation."
   },
   nats: {
     simple: "A reusable Python library that lets services send and receive messages reliably using NATS JetStream, so teams don't have to build that plumbing themselves.",
@@ -325,73 +316,47 @@ const projectExplainerCopy = {
   },
   jira: {
     simple: "JIRA_REPORTS Framework is an automated reporting tool that pulls Jira data and turns it into quality and activity tracking sheets, so the engineering team can see how delivery is going at a glance.",
-    technical: "Uses Python APIs and Jenkins to automate Jira-based engineering report generation, introducing structured Defect Quality and Scrum Quality tracking sheets alongside Review Activity and Sprint Activity tracking modules.",
-    Project_Link: "https://github.com/Mehak692002/jira_reports"
+    technical: "Uses Python APIs and Jenkins to automate Jira-based engineering report generation, introducing structured Defect Quality and Scrum Quality tracking sheets alongside Review Activity and Sprint Activity tracking modules."
   },
   sleep: {
-    simple: "Sleep Pattern Analysis is an AI-powered recommendation platform that personalizes content using machine learning and thoughtful data preprocessing.",
-    technical: "This project applies supervised learning to a structured health dataset with preprocessing, feature engineering, and performance evaluation to uncover patterns in sleep behavior, deployed via Vercel, Neon, and Render.",
-    Project_Link : "https://sleep-recommendation-system.vercel.app/"
+    simple: "Sleep Pattern Analysis is an ML application that analyzes sleep data and turns predictions into personalized lifestyle recommendations.",
+    technical: "This project applies supervised learning to a structured health dataset with preprocessing, feature engineering, and performance evaluation to uncover patterns in sleep behavior, deployed via Vercel, Neon, and Render."
   },
   solitude: {
     simple: "Solitude Selections is an AI-powered recommendation platform that personalizes recommendations using data preprocessing, feature engineering, and modular machine learning pipelines.",
     technical: "This project combines feature engineering, recommendation pipelines, and reusable, object-oriented Python modules to build a scalable recommendation system — published as a CRC Press research contribution in 2025."
   }
 };
+
 projectButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const project = button.dataset.project;
     const mode = button.dataset.mode;
     const summary = projectExplainerCopy[project]?.[mode] || "Select a project to see an AI-style explanation.";
-    if (explainerOutput) {
-      explainerOutput.textContent = summary;
-    }
+    if (explainerOutput) explainerOutput.textContent = summary;
   });
 });
+
 if (analyzeBtn && jobDescription && analysisResult) {
   analyzeBtn.addEventListener("click", () => {
     const text = jobDescription.value.toLowerCase();
     const strengths = [];
     const gaps = [];
-    if (text.includes("python") || text.includes("backend")) {
-      strengths.push("Python backend engineering");
-    }
-    if (text.includes("computer vision") || text.includes("opencv") || text.includes("mediapipe") || text.includes("image processing")) {
-      strengths.push("Computer vision (MediaPipe, ONNX, spoof detection)");
-    }
-    if (text.includes("microservice") || text.includes("api") || text.includes("rest")) {
-      strengths.push("Microservices and REST API development");
-    }
-    if (text.includes("kafka") || text.includes("nats") || text.includes("rabbitmq") || text.includes("event-driven") || text.includes("messaging") || text.includes("pub/sub") || text.includes("pubsub")) {
-      strengths.push("Event-driven messaging systems (NATS/JetStream)");
-    }
-    if (text.includes("machine learning") || text.includes(" ml") || text.includes("ai ")) {
-      strengths.push("AI/ML and data-driven product work");
-    }
-    if (text.includes("research") || text.includes("publication")) {
-      strengths.push("Research-oriented problem solving");
-    }
-    if (text.includes("docker") || text.includes("ci/cd") || text.includes("jenkins")) {
-      strengths.push("CI/CD and containerized workflows (Docker, Jenkins)");
-    }
-    if (text.includes("kubernetes") || text.includes("aws") || text.includes("cloud infrastructure") || text.includes("terraform")) {
-      gaps.push("Large-scale cloud infrastructure (Kubernetes/Terraform) experience");
-    }
-    if (text.includes("go") && text.includes("golang")) {
-      gaps.push("Go/Golang production experience");
-    }
-    if (text.includes("llm") || text.includes("prompt engineering") || text.includes("fine-tuning")) {
-      gaps.push("Advanced LLM-specific production experience");
-    }
-    if (strengths.length === 0) {
-      strengths.push("Strong foundation in Python, computer vision, and backend systems");
-    }
-    if (gaps.length === 0) {
-      gaps.push("Broaden large-scale cloud deployment exposure");
-    }
+    if (text.includes("python") || text.includes("backend")) strengths.push("Python backend engineering");
+    if (text.includes("computer vision") || text.includes("opencv") || text.includes("mediapipe") || text.includes("image processing")) strengths.push("Computer vision (MediaPipe, ONNX, spoof detection)");
+    if (text.includes("microservice") || text.includes("api") || text.includes("rest")) strengths.push("Microservices and REST API development");
+    if (text.includes("kafka") || text.includes("nats") || text.includes("rabbitmq") || text.includes("event-driven") || text.includes("messaging") || text.includes("pub/sub") || text.includes("pubsub")) strengths.push("Event-driven messaging systems (NATS/JetStream)");
+    if (text.includes("machine learning") || text.includes(" ml") || text.includes("ai ")) strengths.push("AI/ML and data-driven product work");
+    if (text.includes("research") || text.includes("publication")) strengths.push("Research-oriented problem solving");
+    if (text.includes("docker") || text.includes("ci/cd") || text.includes("jenkins")) strengths.push("CI/CD and containerized workflows (Docker, Jenkins)");
+    if (text.includes("kubernetes") || text.includes("aws") || text.includes("cloud infrastructure") || text.includes("terraform")) gaps.push("Large-scale cloud infrastructure (Kubernetes/Terraform) experience");
+    if (text.includes("go") && text.includes("golang")) gaps.push("Go/Golang production experience");
+    if (text.includes("llm") || text.includes("prompt engineering") || text.includes("fine-tuning")) gaps.push("Advanced LLM-specific production experience");
+    if (strengths.length === 0) strengths.push("Strong foundation in Python, computer vision, and backend systems");
+    if (gaps.length === 0) gaps.push("Broaden large-scale cloud deployment exposure");
     const score = Math.min(95, 62 + strengths.length * 6 - gaps.length * 3);
     analysisResult.innerHTML = `
-      <h3>Recruiter insight</h3>
+      <p class="explainer-label">Recruiter insight</p>
       <p><strong>Match score:</strong> ${score}%</p>
       <p><strong>Strong fit:</strong></p>
       <ul>${strengths.map((item) => `<li>${item}</li>`).join("")}</ul>
@@ -400,6 +365,7 @@ if (analyzeBtn && jobDescription && analysisResult) {
     `;
   });
 }
+
 if (voiceBtn) {
   voiceBtn.addEventListener("click", () => {
     if (window.speechSynthesis) {
@@ -410,19 +376,21 @@ if (voiceBtn) {
     }
   });
 }
+
 if (themeToggle) {
   const storedTheme = localStorage.getItem("mehak-theme");
   if (storedTheme === "light") {
     document.body.classList.add("light-theme");
-    themeToggle.textContent = "☀️";
+    themeToggle.textContent = "☀";
   }
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
     const isLight = document.body.classList.contains("light-theme");
-    themeToggle.textContent = isLight ? "☀️" : "🌙";
+    themeToggle.textContent = isLight ? "☀" : "◐";
     localStorage.setItem("mehak-theme", isLight ? "light" : "dark");
   });
 }
+
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("open");
@@ -435,21 +403,5 @@ if (menuToggle && siteNav) {
     });
   });
 }
-const introOverlay = document.getElementById("intro-overlay");
-if (introOverlay) {
-  setTimeout(() => {
-    introOverlay.classList.add("hidden");
-  }, 2200);
-}
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  { threshold: 0.15 }
-);
-document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
 initializeChat();
